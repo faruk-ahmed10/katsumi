@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap')
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.10);
+      }
+    
+      .text-shadow-md {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+    
+      .text-shadow-lg {
+        text-shadow: 0 15px 30px rgba(0,0,0,0.11), 0 5px 15px rgba(0,0,0,0.08);
+      }
+    
+      .text-shadow-none {
+        text-shadow: none;
+      }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    /* -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: #00FE38; */
+    /* mix-blend-mode: normal;
+    text-shadow: 0px 8px 1px rgba(0, 0, 0, 0.4); */
+}
+
+.text_gradient{
+  color: #f7b504f2;
+  background: linear-gradient(180deg, #FFFFFF 0%, #fedd00 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-text-fill-color: #f7b504f2;
+  -moz-text-fill-color: #f7b504f2;
+  -o-text-fill-color: #f7b504f2;
+  text-stroke: 1px #00FE38;
+  -webkit-text-stroke: 1px #00FE38;
+  -moz-text-stroke: 1px #00FE38;
+  -o-text-stroke: 1px #00FE38;
+  text-shadow: 3px 5px 0 black, -1px 5px 0 transparent, 1px 5px 0 transparent, -1px 3px 0 transparent, 1px 1px 0 transparent;
+
+}
+
+.priceWrap{
+   /* width: 380px; */
+   margin: 0 auto;
+   margin-top: -5px;
+}
+
+header{
+  box-shadow: 0px 10px #3f034c;
+}
+
+@media(max-width:640px){
+  .second_items_serenity{
+     margin-top: 0 !important;
+  }
+}
