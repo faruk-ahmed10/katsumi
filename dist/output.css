@@ -30,6 +30,10 @@
   top: 0px;
 }
 
+.-bottom-\[10px\]{
+  bottom: -10px;
+}
+
 .-left-\[50px\]{
   left: -50px;
 }
@@ -48,14 +52,6 @@
 
 .top-4{
   top: 1rem;
-}
-
-.bottom-0{
-  bottom: 0px;
-}
-
-.-bottom-\[10px\]{
-  bottom: -10px;
 }
 
 .z-10{
@@ -169,12 +165,12 @@
   height: 1.25rem;
 }
 
-.h-2\/3{
-  height: 66.666667%;
-}
-
 .h-10{
   height: 2.5rem;
+}
+
+.h-2\/3{
+  height: 66.666667%;
 }
 
 .h-2{
@@ -225,8 +221,8 @@
   width: 1.25rem;
 }
 
-.w-3\/5{
-  width: 60%;
+.w-1\/2{
+  width: 50%;
 }
 
 .w-3\/4{
@@ -237,8 +233,8 @@
   width: 70%;
 }
 
-.w-1\/2{
-  width: 50%;
+.w-3\/5{
+  width: 60%;
 }
 
 .w-\[48\%\]{
@@ -251,26 +247,6 @@
 
 .max-w-full{
   max-width: 100%;
-}
-
-.max-w-xs{
-  max-width: 20rem;
-}
-
-.max-w-sm{
-  max-width: 24rem;
-}
-
-.max-w-md{
-  max-width: 28rem;
-}
-
-.max-w-\[24rem\]{
-  max-width: 24rem;
-}
-
-.max-w-\[24\.5rem\]{
-  max-width: 24.5rem;
 }
 
 .max-w-\[10rem\]{
@@ -287,10 +263,6 @@
 
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-cols-3{
-  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-1{
@@ -319,10 +291,6 @@
 
 .gap-2{
   gap: 0.5rem;
-}
-
-.gap-5{
-  gap: 1.25rem;
 }
 
 .space-y-3 > :not([hidden]) ~ :not([hidden]){
@@ -583,12 +551,12 @@
   padding: 1.25rem;
 }
 
-.p-2{
-  padding: 0.5rem;
-}
-
 .p-3{
   padding: 0.75rem;
+}
+
+.p-2{
+  padding: 0.5rem;
 }
 
 .px-2{
@@ -712,18 +680,12 @@
   font-size: 10px;
 }
 
-.text-base{
-  font-size: 1rem;
-  line-height: 1.5rem;
+.text-\[0\.8rem\]{
+  font-size: 0.8rem;
 }
 
-.text-\[28px\]{
-  font-size: 28px;
-}
-
-.text-4xl{
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-\[14px\]{
+  font-size: 14px;
 }
 
 .text-tiny{
@@ -739,6 +701,16 @@
   line-height: 1;
 }
 
+.text-base{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-4xl{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-7xl{
   font-size: 4.5rem;
   line-height: 1;
@@ -751,18 +723,6 @@
 
 .text-\[156px\]{
   font-size: 156px;
-}
-
-.text-\[20px\]{
-  font-size: 20px;
-}
-
-.text-\[0\.8rem\]{
-  font-size: 0.8rem;
-}
-
-.text-\[14px\]{
-  font-size: 14px;
 }
 
 .font-black{
@@ -789,16 +749,12 @@
   line-height: 18px;
 }
 
-.leading-\[32px\]{
-  line-height: 32px;
+.leading-\[25px\]{
+  line-height: 25px;
 }
 
 .leading-\[48px\]{
   line-height: 48px;
-}
-
-.leading-\[25px\]{
-  line-height: 25px;
 }
 
 .tracking-normal{
@@ -971,14 +927,6 @@ header{
     width: 9rem;
   }
 
-  .sm\:max-w-\[8\.5rem\]{
-    max-width: 8.5rem;
-  }
-
-  .sm\:max-w-\[10rem\]{
-    max-width: 10rem;
-  }
-
   .sm\:space-y-0 > :not([hidden]) ~ :not([hidden]){
     --tw-space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
@@ -1078,13 +1026,13 @@ header{
     padding-top: 0px;
   }
 
-  .md\:text-\[25px\]{
-    font-size: 25px;
-  }
-
   .md\:text-base{
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .md\:text-\[25px\]{
+    font-size: 25px;
   }
 
   .md\:leading-\[30px\]{
