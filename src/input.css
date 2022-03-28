@@ -65,6 +65,13 @@ header{
   box-shadow: 0px 10px #3f034c;
 }
 
+.modal_body{
+   background: rgb(0 0 0 / 82%);
+   padding: 10px;
+   height: 100%;
+   overflow: auto;
+}
+
 @media(max-width:640px){
   .second_items_serenity{
      margin-top: 0 !important;

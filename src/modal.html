@@ -1,498 +1,604 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/dist/output.css" rel="stylesheet">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
-    </head>
-    <body class="font-sans m-0 p-0 outline-none">
-        <div class="min-h-screen w-full bg-gradient-to-b from-kat-purple to-black flex justify-center items-center">
-            <div class="rounded-lg w-3/5 border-2 border-solid border-gra-green p-5 grid grid-cols-3 gap-5">
-                <button onclick="openModal('#connectwallet')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Connect Wallet
-                </button>
-                <button onclick="openModal('#manualTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Manual Tranx
-                </button>
-                <button onclick="openModal('#confirmTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Confirm Tranx
-                </button>
-                <button onclick="openModal('#trxLoadUnstake')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Loading Staking
-                </button>
-                <button onclick="openModal('#confirmTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Confirm Unstaking
-                </button>
-                <button onclick="openModal('#error')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
-                    Loading Unstaking
-                </button>
-            </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/dist/output.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+</head>
+<body class="font-sans m-0 p-0 outline-none bg-purple-200">
+  <header class="rounded-t-lg bg-gradient-to-b from-kat-green to-gra-green p-[3px] mb-2">
+    <div class="rounded-t-lg overflow-hidden lg:flex justify-between items-center px-2 py-2 lg:py-2 bg-gradient-to-b from-[#610077] to-[#000]">
+      <!-- Header Left -->
+      <div class="flex justify-between items-center lg:w-1/3">
+        <div class="w-64">
+          <img src="../assets/img/kutsumi.png" alt="Katsumi Icon" class="hidden md:block max-w-full">
+          <img src="../assets/img/katsumi_laptop.png" alt="Katsumi Icon" class="md:hidden  max-w-full">
         </div>
+        <div class="pl-3">
+          <img src="../assets/img/logo.png" alt="Logo" class="max-w-full">
+          <div class="flex md:hidden">
+             <div class="icon w-10 mr-3">
+               <img src="../assets/img/kutsumi.png" alt="Katsumi Icon" class="max-w-full">
+             </div>
+             <div class="text-center lg:text-left">
+              <h2 class="text-xs  font-400  bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Katsumi (KATSUMI) <img src="../assets/img/sword.png" alt="Sword" class="w-32"></h2>
+              <h1 class="text-sm font-black bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">KATSUMI PRICE: $0.000000009052</h1>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Modal -->
-        <!-- Connect Wallet -->
-        <div id="connectwallet" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
-            <div class="min-w-full min-h-screen flex justify-center items-center">
-                <div id="connectwalletContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
-                    <div class="ml-auto w-[70%] pr-12">
-                        <!-- Modal Header -->
-                        <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
-                            <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full flex justify-end">
-                                <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
-                            </div>
-                            <div onclick="closeModal('#connectwallet')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-                            </div>
-                        </div>
-                        <!-- Modal Content Start -->
-                        <div class="pl-24 flex flex-col justify-between">
-                            <div class="min-h-[280px]">
-                                <div class="mt-5">
-                                    <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
-                                            <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
-                                            <h1 class="text-[28px] leading-[32px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Metamask</h1>
-                                        </div>
-                                        <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
-                                            <!-- <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div> -->
-                                            <img src="../assets/img/metamask.png" alt="Metamask" class="max-h-full max-w-full rounded-xl">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-5">
-                                    <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
-                                            <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
-                                            <h1 class="text-[28px] leading-[32px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Wallet Connect</h1>
-                                        </div>
-                                        <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
-                                            <!-- <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div> -->
-                                            <img src="../assets/img/walletconnect.png" alt="Metamask" class="max-h-full max-w-full rounded-xl">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-5">
-                                    <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
-                                            <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
-                                            <h1 class="text-[28px] leading-[32px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Coinbase Wallet</h1>
-                                        </div>
-                                        <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
-                                            <!-- <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div> -->
-                                            <img src="../assets/img/coinbase.png" alt="Metamask" class="max-h-full max-w-full rounded-xl">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Modal Footer -->
-                            <div class="">
-                                <div class="">
-                                    <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
-                                            <div class="w-5 h-5 mr-2  rounded-full">
-                                                <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
-                                            </div>
-                                            <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                                CONNECT TO TWITTER
-                                            </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2 rounded-full">
-                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                            CONNECT TO TELEGRAM
-                                        </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
-                                            CONNECT TO DISCORD
-                                        </a> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      <!-- Header Middle -->
+      <div class="lg:w-1/3 md:pr-3 md:pt-0 my-1 xs:my-2 sm:my-3 md:my-4 lg:my-0">
+        <div class="priceWrap w-[320px] lg:w-full xl:w-[380px] 2xl:w-[415px] ">
+            <div class="text-center lg:text-left hidden md:block">
+              <h2 class="text-lg  font-bold  bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Katsumi (KATSUMI)</h2>
+              <h1 class="text-lg  xl:text-[1.35rem] 2xl:text-[1.5rem] font-black bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">KATSUMI PRICE: $0.000000009052</h1>
             </div>
+            <div class="h-4 -mt-1.5 mb-1 w-full hidden md:block">
+              <img src="../assets/img/sword.png" alt="Sword" class="max-w-full min-w-full max-h-full">
+            </div>
+            <!-- All Buttons -->
+            <div class="flex justify-between">
+              <button type="button" class="w-24 py-1 shadow-inner sm:w-36 lg:w-28 border-2 border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-[#000]">
+                <p class="text-[8px] leading-none sm:text-xs sm:leading-none lg:text-tiny font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">DISCOVER MORE</p>
+                <p class="text-sm leading-none sm:text-xl sm:leading-none font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">POOLS</p>
+              </button>
+              <button type="button" class="w-24 py-1 shadow-inner sm:w-36 lg:w-28 border-2 border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-[#000]">
+                <p class="text-[8px] sm:text-xs sm:leading-none lg:text-tiny font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green leading-none">Learn more about</p>
+                <p class="text-sm leading-none sm:text-xl sm:leading-none font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">KATSUMI</p>
+              </button>
+              <button type="button" class="w-24 py-1 shadow-inner sm:w-36 lg:w-28 border-2 border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-[#000]">
+                <p class="text-[8px] sm:text-xs sm:leading-none lg:text-tiny font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green leading-none">Buy more</p>
+                <p class="text-sm leading-none sm:text-xl sm:leading-none font-bold bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">NFT’S</p>
+              </button>
+            </div>
+          </div>
+      </div>
+
+      <!-- Header Right Banner -->
+      <div class="lg:w-1/3">
+        <div class="hidden md:block">
+          <img src="../assets/img/navbanner.png" alt="Banner" class="max-w-full">
         </div>
-        <!-- Confirm Transaction -->
-        <div id="confirmTrx" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
-            <div class="min-w-full min-h-screen flex justify-center items-center">
-                <div id="confirmTrxContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
-                    <div class="ml-auto w-[70%] pr-12">
-                        
-                        <!-- Modal Header -->
-                        <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
-                            <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full flex justify-end">
-                                <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
-                            </div>
-                            <div onclick="closeModal('#confirmTrx')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-                            </div>
-                        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="bg-gradient-to-b from-kat-purple py-5 to-black px-5 border-[3px] border-y-0 border-solid border-[#18880C]">
+    <!-- Main Body -->
     
-                        <!-- Modal Content Start -->
-                        <div class="pl-24 flex flex-col justify-between">
-                            <div class="min-h-[280px]">
-                                <!-- Content Inside -->
-                                <div class="border-[3px] border-x-0 border-t-0 border-solid border-gra-yellow pb-2">
-                                    <h1 class="font-bold text-[38px] text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gra-yellow">Confirm your transaction</h1>
-                                </div>
-                                <div class="text-center text-white border-[3px] border-x-0 border-t-0 border-solid border-gra-yellow py-2">
-                                    <h3 class="text-2xl">Staking 0.00001 Katsumi</h3>
-                                    <h3 class="text-2xl uppercase">FOR</h3>
-                                    <h3 class="text-2xl">0.000000000023 TBD</h3>
-                                </div>
-                                <div class="">
-                                    <p class="text-uppercase text-white text-sm text-center py-2">CONFIRM THIS TRANSACTION IN YOUR WALLET</p>
-                                    <div class="flex justify-between">
-                                        <button class="border-[3px] border-solid border-gra-green px-3 py-2 rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
-                                            <h1 class="bg-clip-text text-lg text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Approve Transacton</h1>
-                                        </button>
-                                        <button class="border-[3px] border-solid border-gra-green px-3 py-2 rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
-                                            <h1 class="bg-clip-text text-lg text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Deny Transacton</h1>
-                                        </button>
+    <div class="min-h-screen w-full bg-gradient-to-b from-kat-purple to-black flex justify-center items-center">
+      <div class="rounded-lg lg:w-3/5 w-5/5 sm:w-5/5 border-2 border-solid border-gra-green p-5 grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-2 md:gap-3 lg:gap-5">
+          <button onclick="openModal('#connectwallet')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Connect Wallet
+          </button>
+          <button onclick="openModal('#manualTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Manual Tranx
+          </button>
+          <button onclick="openModal('#confirmTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Confirm Tranx
+          </button>
+          <button onclick="openModal('#trxLoadUnstake')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Loading Staking
+          </button>
+          <button onclick="openModal('#confirmTrx')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Confirm Unstaking
+          </button>
+          <button onclick="openModal('#error')" class="px-5 py-3 block rounded-lg border border-solid border-kat-green shadow-inner text-sm font-bold bg-gradient-to-b from-purple-200 to-purple-500 text-kat-purple hover:opacity-90 cursor-pointer">
+              Loading Unstaking
+          </button>
+      </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- Connect Wallet -->
+  <div id="connectwallet" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
+      <div class="min-w-full min-h-screen flex justify-center items-center">
+          <div id="connectwalletContent" class="relative lg:w-[1000px] w-full border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
+              <div class="ml-auto w-full lg:w-[70%] lg:pr-12 p-3">
+                  <!-- Modal Header -->
+                  <div class="absolute z-20 -bottom-[10px] -left-[50px]">
+                      <img src="../assets/img/katsumi_laptop.png" alt="Image" class=" lg:max-w-[24.5rem] md:max-w-[15rem] max-w-[10rem]">
+                  </div>
+                  <div class="w-full">
+                      <div class="w-full flex justify-end">
+                          <img src="../assets/img/logo.png" alt="" class="max-w-full">
+                      </div>
+                      <div onclick="closeModal('#connectwallet')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+                      </div>
+                  </div>
+                  <!-- Modal Content Start -->
+                  <div class="modal_content relative z-50">
+                    <div class="lg:pl-24 flex flex-col justify-between">
+                        <div class="main_content">
+                            <div class="mt-5">
+                                <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
+                                    <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
+                                        <h3 class="text-[0.8rem] md:text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
+                                        <h1 class="text-[14px] sm:text-[20px] md:text-[25px] lg:text-[28px] leading-[25px] md:leading-[30px] lg:leading-[32px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Metamask</h1>
+                                    </div>
+                                    <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
+                                        <img src="../assets/img/metamask.png" alt="Metamask" class="max-w-full rounded-xl">
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal Footer -->
-                            <div class="">
-                                <div class="">
-                                    <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                            <div class="mt-5">
+                                <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
+                                    <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
+                                        <h3 class="text-[0.8rem] md:text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
+                                        <h1 class="text-[14px] sm:text-[20px] md:text-[25px] lg:text-[28px] leading-[25px] md:leading-[30px] lg:leading-[32px]  bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Wallet Connect</h1>
+                                    </div>
+                                    <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
+                                        <img src="../assets/img/walletconnect.png" alt="Metamask" class="max-w-full rounded-xl">
+                                    </div>
                                 </div>
-                                <div class="mt-2">
-                                    <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
-                                            <div class="w-5 h-5 mr-2  rounded-full">
-                                                <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
-                                            </div>
-                                            <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                                CONNECT TO TWITTER
-                                            </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2 rounded-full">
-                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                            CONNECT TO TELEGRAM
-                                        </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                            </div>
+                            <div class="mt-5">
+                                <div class="w-full flex border-[3px] border-solid border-kat-green rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
+                                    <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
+                                        <h3 class="text-[0.8rem] md:text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">connect to</h3>
+                                        <h1 class="text-[14px] sm:text-[20px] md:text-[25px] lg:text-[28px] leading-[25px] md:leading-[30px] lg:leading-[32px]  bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Coinbase Wallet</h1>
+                                    </div>
+                                    <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b overflow-hidden from-gra-yellow to-gra-green py-1 px-4">
+                                        <img src="../assets/img/coinbase.png" alt="Metamask" class=" max-w-full rounded-xl">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal Footer -->
+                        <div class="mb-2 hidden md:block">
+                            <div class="">
+                                <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                            </div>
+                            <div class="mt-2">
+                                <div class="w-full md:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+                                    <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
                                         <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
-                                            CONNECT TO DISCORD
-                                        </a> 
+                                            <img src="../assets/img/twitter.png" alt="" class="max-w-full">
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Transaction Loading -->
-        <div id="trxLoadUnstake" class="modal_body fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50 hidden">
-            <div class="min-w-full min-h-screen flex justify-center items-center">
-                <div id="trxLoadUnstakeContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
-                    <div class="ml-auto w-[70%] pr-12">
-                        
-                        <!-- Modal Header -->
-                        <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
-                            <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full flex justify-end">
-                                <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
-                            </div>
-                            <div onclick="closeModal('#trxLoadUnstake')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-                            </div>
-                        </div>
-    
-                        <!-- Modal Content Start -->
-                        <div class="pl-24 flex flex-col justify-center ">
-                            <div class="min-h-[280px] flex flex-col justify-center">
-                                <!-- Content Inside -->
-                                <div class="">
-                                    <h1 class="font-bold text-5xl text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gra-yellow">Transaction Loading</h1>
-                                </div>
-                                <div class="border-[3px] border-solid border-gra-green rounded-xl p-1 my-4 bg-gradient-to-b from-[#4B4B4B] to-black">
-                                    <div class="h-2 rounded-xl bg-gradient-to-b from-kat-green to-kat-green/95"></div>
-                                </div>
-                                <p class="text-sm text-white text-center">Your transactions is processing. Thank you for your patience</p>
-                            </div>
-                            <!-- Modal Footer -->
-                            <div class="">
-                                <div class="">
-                                    <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
-                                            <div class="w-5 h-5 mr-2  rounded-full">
-                                                <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
-                                            </div>
-                                            <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                                CONNECT TO TWITTER
-                                            </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2 rounded-full">
-                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                            CONNECT TO TELEGRAM
-                                        </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
-                                            CONNECT TO DISCORD
-                                        </a> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Manual Transaction -->
-        <div id="manualTrx" class="modal_body fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50 hidden">
-            <div class="min-w-full min-h-screen flex justify-center items-center">
-                <div id="manualTrxContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
-                    <div class="ml-auto w-[70%] pr-12">
-                        <div class="absolute top-0 -left-[70px] min-h-full w-full h-full">
-                            <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full flex justify-end">
-                                <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
-                            </div>
-                            <div onclick="closeModal('#manualTrx')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-                            </div>
-                        </div>
-                        <div class="space-y-2 pl-24">
-                            <div class="">
-                                <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold py-1">Transactions Deadline</h1>
-                                <div class="flex justify-between">
-                                    <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">0.1%</h1>
-                                    </div>
-                                    <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">0.5%</h1>
-                                    </div>
-                                    <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">1%</h1>
-                                    </div>
-                                    <div class="border-[3px] w-3/5 border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-gra-yellow to-gra-green">
-                                        <div class="min-h-full border-[3px] border-y-0 border-solid border-kat-green px-3 bg-gradient-to-b from-[#4B4B4B] to-black">
-                                            <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">30.05%</h1>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Transactions Deadline</h1>
-                                <div class="flex">
-                                    <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">20</h1>
-                                    </div>
-                                    <div class="pl-2">
-                                        <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Minutes</h1>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Interface Setting</h1>
-                                <div class="">
-                                    <div class="w-full flex border-[3px] border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
-                                            <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Disable</h3>
-                                            <h1 class="text-4xl leading-[48px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Multihope</h1>
-                                        </div>
-                                        <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b from-gra-yellow to-gra-green py-1 px-4">
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-5">
-                                    <div class="w-full flex border-[3px] border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                        <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
-                                            <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Toggle</h3>
-                                            <h1 class="text-4xl leading-[48px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Expert Mode</h1>
-                                        </div>
-                                        <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b from-gra-yellow to-gra-green py-1 px-4">
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                            <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
-                                                <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
-                                        <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
-                                        </div>
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                        <a href="#" class="underline text-white rounded-full font-bold m-0 p-0 text-tiny">
                                             CONNECT TO TWITTER
                                         </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                    </div>
+                                    <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
                                         <div class="w-5 h-5 mr-2 rounded-full">
-                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full">
                                         </div> 
                                         <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
                                             CONNECT TO TELEGRAM
                                         </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                    </div>
+                                    <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
                                         <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+                                            <img src="../assets/img/discord.png" alt="" class="max-w-full">
                                         </div> 
                                         <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
                                             CONNECT TO DISCORD
                                         </a> 
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Menual Transaction End -->
-        <!-- Transaction Error -->
-        <div id="error" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
-            <div class="min-w-full min-h-screen flex justify-center items-center">
-                <div id="errorContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
-                    <div class="ml-auto w-[70%] pr-12">
-                        
-                        <!-- Modal Header -->
-                        <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
-                            <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
-                        </div>
-                        <div class="w-full">
-                            <div class="w-full flex justify-end">
-                                <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
-                            </div>
-                            <div onclick="closeModal('#error')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
-                            </div>
-                        </div>
-    
-                        <!-- Modal Content Start -->
-                        <div class="pl-24 flex flex-col justify-center ">
-                            <div class="min-h-[280px] flex flex-col justify-center">
-                                <!-- Content Inside -->
-                                <div class="">
-                                    <h1 class="font-bold text-7xl uppercase text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FE0000] to-[#610303]">Transaction</h1>
-                                </div>
-                                <div class="border-[3px] border-solid border-kat-green rounded-xl p-1 bg-gradient-to-b from-[#4B4B4B] to-black">
-                                    <div class="h-2 rounded-xl bg-gradient-to-b from-[#FE0000] to-[#610303]"></div>
-                                </div>
-                                <h1 class="relative text-9xl text-center bg-gradient-to-b bg-clip-text text-transparent from-[#FE0000] to-[#610303]"><span class="absolute w-full text-center top-4 text-white text-tiny">There was a error with your Transaction.  Please try again!</span> <span class="text-[156px]">{</span>ERROR<span class="text-[156px]">}</span></h1>
-                            </div>
-                            <!-- Modal Footer -->
-                            <div class="">
-                                <div class="">
-                                    <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
-                                </div>
-                                <div class="mt-2">
-                                    <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
-                                            <div class="w-5 h-5 mr-2  rounded-full">
-                                                <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
-                                            </div>
-                                            <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                                CONNECT TO TWITTER
-                                            </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2 rounded-full">
-                                            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
-                                            CONNECT TO TELEGRAM
-                                        </a> 
-                                        </div>
-                                        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
-                                        <div class="w-5 h-5 mr-2  rounded-full">
-                                            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
-                                        </div> 
-                                        <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
-                                            CONNECT TO DISCORD
-                                        </a> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            const openModal = (id) => {
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Confirm Transaction -->
+  <div id="confirmTrx" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
+      <div class="min-w-full min-h-screen flex justify-center items-center">
+          <div id="confirmTrxContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
+              <div class="ml-auto w-[70%] pr-12">
+                  
+                  <!-- Modal Header -->
+                  <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
+                      <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
+                  </div>
+                  <div class="w-full">
+                      <div class="w-full flex justify-end">
+                          <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
+                      </div>
+                      <div onclick="closeModal('#confirmTrx')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+                      </div>
+                  </div>
 
-                gsap.to(id, {opacity: 1, duration: 0.5, display: 'block'});
-                gsap.to(`${id}Content`, {y: 0, duration: 0.5});
-            };
-            const closeModal = (id) => {
-                gsap.to(`${id}Content`, { y: -500, duration: 0.5 });
-                gsap.to(id, {opacity: 0, duration: 0.5, display: 'none'});
-            };
-        </script>
-    </body>
+                  <!-- Modal Content Start -->
+                  <div class="pl-24 flex flex-col justify-between">
+                      <div class="min-h-[280px]">
+                          <!-- Content Inside -->
+                          <div class="border-[3px] border-x-0 border-t-0 border-solid border-gra-yellow pb-2">
+                              <h1 class="font-bold text-[38px] text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gra-yellow">Confirm your transaction</h1>
+                          </div>
+                          <div class="text-center text-white border-[3px] border-x-0 border-t-0 border-solid border-gra-yellow py-2">
+                              <h3 class="text-2xl">Staking 0.00001 Katsumi</h3>
+                              <h3 class="text-2xl uppercase">FOR</h3>
+                              <h3 class="text-2xl">0.000000000023 TBD</h3>
+                          </div>
+                          <div class="">
+                              <p class="text-uppercase text-white text-sm text-center py-2">CONFIRM THIS TRANSACTION IN YOUR WALLET</p>
+                              <div class="flex justify-between">
+                                  <button class="border-[3px] border-solid border-gra-green px-3 py-2 rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
+                                      <h1 class="bg-clip-text text-lg text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Approve Transacton</h1>
+                                  </button>
+                                  <button class="border-[3px] border-solid border-gra-green px-3 py-2 rounded-xl bg-gradient-to-b from-[#4B4B4B] to-black">
+                                      <h1 class="bg-clip-text text-lg text-transparent bg-gradient-to-b from-gra-yellow to-gra-green">Deny Transacton</h1>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- Modal Footer -->
+                      <div class="">
+                          <div class="">
+                              <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                          </div>
+                          <div class="mt-2">
+                              <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
+                                      <div class="w-5 h-5 mr-2  rounded-full">
+                                          <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
+                                      </div>
+                                      <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                          CONNECT TO TWITTER
+                                      </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2 rounded-full">
+                                      <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                      CONNECT TO TELEGRAM
+                                  </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2  rounded-full">
+                                      <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
+                                      CONNECT TO DISCORD
+                                  </a> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Transaction Loading -->
+  <div id="trxLoadUnstake" class="modal_body fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50 hidden">
+      <div class="min-w-full min-h-screen flex justify-center items-center">
+          <div id="trxLoadUnstakeContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
+              <div class="ml-auto w-[70%] pr-12">
+                  
+                  <!-- Modal Header -->
+                  <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
+                      <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
+                  </div>
+                  <div class="w-full">
+                      <div class="w-full flex justify-end">
+                          <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
+                      </div>
+                      <div onclick="closeModal('#trxLoadUnstake')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+                      </div>
+                  </div>
+
+                  <!-- Modal Content Start -->
+                  <div class="pl-24 flex flex-col justify-center ">
+                      <div class="min-h-[280px] flex flex-col justify-center">
+                          <!-- Content Inside -->
+                          <div class="">
+                              <h1 class="font-bold text-5xl text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-gra-yellow">Transaction Loading</h1>
+                          </div>
+                          <div class="border-[3px] border-solid border-gra-green rounded-xl p-1 my-4 bg-gradient-to-b from-[#4B4B4B] to-black">
+                              <div class="h-2 rounded-xl bg-gradient-to-b from-kat-green to-kat-green/95"></div>
+                          </div>
+                          <p class="text-sm text-white text-center">Your transactions is processing. Thank you for your patience</p>
+                      </div>
+                      <!-- Modal Footer -->
+                      <div class="">
+                          <div class="">
+                              <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                          </div>
+                          <div class="mt-2">
+                              <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
+                                      <div class="w-5 h-5 mr-2  rounded-full">
+                                          <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
+                                      </div>
+                                      <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                          CONNECT TO TWITTER
+                                      </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2 rounded-full">
+                                      <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                      CONNECT TO TELEGRAM
+                                  </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2  rounded-full">
+                                      <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
+                                      CONNECT TO DISCORD
+                                  </a> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Manual Transaction -->
+  <div id="manualTrx" class="modal_body fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50 hidden">
+      <div class="min-w-full min-h-screen flex justify-center items-center">
+          <div id="manualTrxContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
+              <div class="ml-auto w-[70%] pr-12">
+                  <div class="absolute top-0 -left-[70px] min-h-full w-full h-full">
+                      <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
+                  </div>
+                  <div class="w-full">
+                      <div class="w-full flex justify-end">
+                          <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
+                      </div>
+                      <div onclick="closeModal('#manualTrx')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+                      </div>
+                  </div>
+                  <div class="space-y-2 pl-24">
+                      <div class="">
+                          <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold py-1">Transactions Deadline</h1>
+                          <div class="flex justify-between">
+                              <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">0.1%</h1>
+                              </div>
+                              <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">0.5%</h1>
+                              </div>
+                              <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">1%</h1>
+                              </div>
+                              <div class="border-[3px] w-3/5 border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-gra-yellow to-gra-green">
+                                  <div class="min-h-full border-[3px] border-y-0 border-solid border-kat-green px-3 bg-gradient-to-b from-[#4B4B4B] to-black">
+                                      <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">30.05%</h1>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="">
+                          <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Transactions Deadline</h1>
+                          <div class="flex">
+                              <div class="border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">20</h1>
+                              </div>
+                              <div class="pl-2">
+                                  <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Minutes</h1>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="">
+                          <h1 class="text-lg bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Interface Setting</h1>
+                          <div class="">
+                              <div class="w-full flex border-[3px] border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
+                                      <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Disable</h3>
+                                      <h1 class="text-4xl leading-[48px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Multihope</h1>
+                                  </div>
+                                  <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b from-gra-yellow to-gra-green py-1 px-4">
+                                      <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                          <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
+                                      </div>
+                                      <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                          <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="mt-5">
+                              <div class="w-full flex border-[3px] border-solid border-kat-green rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                  <div class="w-1/2 py-1 px-2 border-[3px] border-y-0 border-l-0 border-solid border-kat-green">
+                                      <h3 class="text-base leading-[18px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Toggle</h3>
+                                      <h1 class="text-4xl leading-[48px] bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">Expert Mode</h1>
+                                  </div>
+                                  <div class="flex justify-between w-1/2 min-h-full bg-gradient-to-b from-gra-yellow to-gra-green py-1 px-4">
+                                      <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                          <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
+                                      </div>
+                                      <div class="w-[48%] min-h-full flex justify-center items-center border-[3px] border-solid border-kat-green px-3 rounded-lg bg-gradient-to-b from-[#4B4B4B] to-black">
+                                          <h1 class="text-4xl bg-clip-text text-transparent bg-gradient-to-b from-gra-yellow to-gra-green font-bold">ON</h1>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="">
+                              <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                          </div>
+                          <div class="mt-2">
+                              <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
+                                  <div class="w-5 h-5 mr-2  rounded-full">
+                                      <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
+                                  </div>
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                      CONNECT TO TWITTER
+                                  </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2 rounded-full">
+                                      <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                      CONNECT TO TELEGRAM
+                                  </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2  rounded-full">
+                                      <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
+                                      CONNECT TO DISCORD
+                                  </a> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Menual Transaction End -->
+  <!-- Transaction Error -->
+  <div id="error" class="modal_body hidden fixed top-0 left-0 bg-black/10 min-h-screen min-w-full z-50">
+      <div class="min-w-full min-h-screen flex justify-center items-center">
+          <div id="errorContent" class="relative w-3/4 h-2/3 p-2 border-kat-green border-solid border-4 rounded-xl overflow-hidden bg-gradient-to-b from-kat-purple to-black" style="transform: translateY(-500px)">
+              <div class="ml-auto w-[70%] pr-12">
+                  
+                  <!-- Modal Header -->
+                  <div class="absolute top-0 -left-[50px] min-h-full w-full h-full">
+                      <img src="../assets/img/katsumi_laptop.png" alt="Image" class="max-w-full max-h-full">
+                  </div>
+                  <div class="w-full">
+                      <div class="w-full flex justify-end">
+                          <img src="../assets/img/logo.png" alt="" class="max-w-full min-w-full max-h-full">
+                      </div>
+                      <div onclick="closeModal('#error')" class="absolute w-10 h-10 font-bold text-2xl shadow-lg shadow-black/50 rounded-full bg-black cursor-pointer text-gra-yellow border-2 border-solid border-gra-green top-2 right-2 flex justify-center items-center">
+                          <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>
+                      </div>
+                  </div>
+
+                  <!-- Modal Content Start -->
+                  <div class="pl-24 flex flex-col justify-center ">
+                      <div class="min-h-[280px] flex flex-col justify-center">
+                          <!-- Content Inside -->
+                          <div class="">
+                              <h1 class="font-bold text-7xl uppercase text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FE0000] to-[#610303]">Transaction</h1>
+                          </div>
+                          <div class="border-[3px] border-solid border-kat-green rounded-xl p-1 bg-gradient-to-b from-[#4B4B4B] to-black">
+                              <div class="h-2 rounded-xl bg-gradient-to-b from-[#FE0000] to-[#610303]"></div>
+                          </div>
+                          <h1 class="relative text-9xl text-center bg-gradient-to-b bg-clip-text text-transparent from-[#FE0000] to-[#610303]"><span class="absolute w-full text-center top-4 text-white text-tiny">There was a error with your Transaction.  Please try again!</span> <span class="text-[156px]">{</span>ERROR<span class="text-[156px]">}</span></h1>
+                      </div>
+                      <!-- Modal Footer -->
+                      <div class="">
+                          <div class="">
+                              <p class="text-kat-green text-tiny font-bold mt-2"><span class="text-white">New to Crypto? </span>  Learn more about wallets and Katsumi Token through our trusted Networks</p>
+                          </div>
+                          <div class="mt-2">
+                              <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
+                                      <div class="w-5 h-5 mr-2  rounded-full">
+                                          <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
+                                      </div>
+                                      <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                          CONNECT TO TWITTER
+                                      </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2 rounded-full">
+                                      <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny">
+                                      CONNECT TO TELEGRAM
+                                  </a> 
+                                  </div>
+                                  <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+                                  <div class="w-5 h-5 mr-2  rounded-full">
+                                      <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+                                  </div> 
+                                  <a href="#" class="underline text-white font-bold m-0 p-0 text-tiny ">
+                                      CONNECT TO DISCORD
+                                  </a> 
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- Advertisement Area -->
+    <div class="">
+      <div class="w-full">
+        <img src="../assets/img/advertisement.png" alt="Advertisement" class="max-w-full">
+      </div>
+    </div>
+  </main>
+
+  <!-- Foooter -->
+  <footer class="p-[3px] w-full min-full overflow-hidden bg-gradient-to-b from-gra-green to-kat-green rounded-b-lg flex items-center">
+    <div class="w-full h-full py-5 xl:flex justify-between items-center rounded-b-lg px-3 bg-gradient-to-b from-black to-kat-purple">
+        <!-- Footer Left -->
+      <div class="w-full md:flex items-center space-y-2 md:space-y-0">
+        <div class="w-full xl:w-auto flex items-center justify-center bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5">
+          <div class="w-5 h-5 mr-2">
+            <img src="../assets/img/kutsumi.png" alt="" class="max-w-full max-h-full">
+          </div> 
+          <a href="/src/modal.html" class="underline text-white font-bold m-0 p-0 text-xs">
+            Visit Katsumi on the Web
+          </a> 
+        </div>
+        <div class="w-full xl:w-auto flex items-center justify-center bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+          <div class="w-5 h-5 mr-2 bg-white rounded-full">
+            <!-- <img src="../assets/img/kutsumi.png" alt="" class="max-w-full max-h-full"> -->
+          </div> 
+          <a href="#" class="underline text-white font-bold m-0 p-0 text-xs">
+            View Katsumi on Etherscan
+          </a> 
+        </div>
+      </div>
+      <!-- Footer Right -->
+      <div class="w-full lg:flex md:space-x-2 space-y-2 md:space-y-0 mt-2 md:mt-0">
+        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1] mr-5 md:mr-0" >
+          <div class="w-5 h-5 mr-2  rounded-full">
+            <img src="../assets/img/twitter.png" alt="" class="max-w-full max-h-full">
+          </div>
+          <a href="#" class="underline text-white font-bold m-0 p-0 text-xs ">
+            CONNECT TO TWITTER
+          </a> 
+        </div>
+        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+          <div class="w-5 h-5 mr-2 rounded-full">
+            <img src="../assets/img/telegram.png" alt="" class="max-w-full max-h-full">
+          </div> 
+          <a href="#" class="underline text-white font-bold m-0 p-0 text-xs">
+            CONNECT TO TELEGRAM
+          </a> 
+        </div>
+        <div class="w-full flex items-center justify-center cursor-pointer bg-[#351555] hover:bg-[#260e3f] shadow-[0px_5px_0px_0px_rgb(53,6,62)] py-2 px-3 rounded-lg border-2 border-solid border-[#7337B1]">
+          <div class="w-5 h-5 mr-2  rounded-full">
+            <img src="../assets/img/discord.png" alt="" class="max-w-full max-h-full">
+          </div> 
+          <a href="#" class="underline text-white font-bold m-0 p-0 text-xs ">
+            CONNECT TO DISCORD
+          </a> 
+        </div>
+        
+      </div>
+    </div>
+  </footer>
+    <script>
+      const openModal = (id) => {
+          gsap.to(id, {opacity: 1, duration: 0.1, display: 'block'});
+          gsap.to(`${id}Content`, {y: 0, duration: 0.1});
+      };
+
+      const closeModal = (id) => {
+          gsap.to(`${id}Content`, { y: -500, duration: 0.1 });
+          gsap.to(id, {opacity: 0, duration: 0.1, display: 'none'});
+      };
+  </script>
+</body>
 </html>
