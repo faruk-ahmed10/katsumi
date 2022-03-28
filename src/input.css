@@ -76,4 +76,7 @@ header{
   .second_items_serenity{
      margin-top: 0 !important;
   }
+  .button_area{
+    width: 300px;
+  }
 }
