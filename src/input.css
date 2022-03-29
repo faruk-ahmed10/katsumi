@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -55,6 +55,22 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+
+.text_gradient_small{
+  color: #f7b504f2;
+  background: linear-gradient(180deg, #FFFFFF 0%, #fedd00 100%);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-text-fill-color: #f7b504f2;
+  -moz-text-fill-color: #f7b504f2;
+  -o-text-fill-color: #f7b504f2;
+  -webkit-text-stroke: 1px #bdd307f2;
+  -moz-text-stroke: 1px #bdd307f2;
+  -o-text-stroke: 1px #bdd307f2;
+  text-shadow: 0px 3px 0 black, -1px 5px 0 transparent, 1px 5px 0 transparent, -1px 3px 0 transparent, 1px 1px 0 transparent;
+}
+
 .text_shadow{
   text-shadow: 1px 2px 0 black, -1px 5px 0 transparent, 1px 5px 0 transparent, -1px 3px 0 transparent, 1px 1px 0 transparent;
 }
@@ -69,8 +85,18 @@ header{
   box-shadow: 0px 10px #3f034c;
 }
 
+.modal_body{
+   background: rgb(0 0 0 / 82%);
+   padding: 10px;
+   height: 100%;
+   overflow: auto;
+}
+
 @media(max-width:640px){
   .second_items_serenity{
      margin-top: 0 !important;
+  }
+  .button_area{
+    width: 300px;
   }
 }
