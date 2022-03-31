@@ -566,6 +566,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }
 
+.my-3{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mb-2{
   margin-bottom: 0.5rem;
 }
@@ -1786,12 +1791,20 @@ header{
     width: 270px;
   }
 
+  .md\:w-2\/4{
+    width: 50%;
+  }
+
   .md\:max-w-\[15rem\]{
     max-width: 15rem;
   }
 
   .md\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .md\:gap-8{
@@ -1804,6 +1817,10 @@ header{
 
   .md\:gap-5{
     gap: 1.25rem;
+  }
+
+  .md\:gap-2{
+    gap: 0.5rem;
   }
 
   .md\:space-y-0 > :not([hidden]) ~ :not([hidden]){
@@ -1869,6 +1886,10 @@ header{
 
   .md\:opacity-100{
     opacity: 1;
+  }
+
+  .md\:first-letter\:w-3\/4::first-letter{
+    width: 75%;
   }
 
   .md\:selection\:pl-24 *::-moz-selection{
@@ -1958,6 +1979,14 @@ header{
     width: 80%;
   }
 
+  .lg\:w-3\/4{
+    width: 75%;
+  }
+
+  .lg\:w-\[90\%\]{
+    width: 90%;
+  }
+
   .lg\:max-w-\[20\.5rem\]{
     max-width: 20.5rem;
   }
@@ -1968,6 +1997,10 @@ header{
 
   .lg\:grid-cols-3{
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-5{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .lg\:gap-5{
@@ -1997,6 +2030,11 @@ header{
 
   .lg\:text-\[28px\]{
     font-size: 28px;
+  }
+
+  .lg\:text-4xl{
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
   .lg\:leading-\[32px\]{
@@ -2029,12 +2067,24 @@ header{
     width: auto;
   }
 
-  .xl\:w-3\/5{
-    width: 60%;
+  .xl\:w-1\/6{
+    width: 16.666667%;
   }
 
-  .xl\:w-\[215px\]{
-    width: 215px;
+  .xl\:w-5\/6{
+    width: 83.333333%;
+  }
+
+  .xl\:w-\[200px\]{
+    width: 200px;
+  }
+
+  .xl\:w-2\/5{
+    width: 40%;
+  }
+
+  .xl\:w-3\/5{
+    width: 60%;
   }
 
   .xl\:grid-cols-3{
@@ -2055,6 +2105,10 @@ header{
 
   .xl\:text-\[2rem\]{
     font-size: 2rem;
+  }
+
+  .xl\:opacity-100{
+    opacity: 1;
   }
 }
 
